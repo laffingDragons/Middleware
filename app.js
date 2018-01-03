@@ -38,7 +38,13 @@ app.get('/restricted/route', middleWare.ageFilter, function (req, res) {
     /*res.send('This is a restricted route, you must above 18 years.. '+ dateOfBirth)*/
     res.send('This is a restricted route, you must above 18 years.. But my age is ' + req.age)
 });
-//
+//starting with error handling
+app.get('*', function (req, res, next) {
+    res.status = 404;
+    next('Path not Found');
+});//end of normal routes
+
+//listening on port 3000
 app.listen(3000, function () {
     console.log('Listening on Port 3000');
 });
