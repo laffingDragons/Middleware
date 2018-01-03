@@ -42,8 +42,16 @@ app.get('/restricted/route', middleWare.ageFilter, function (req, res) {
 app.get('*', function (req, res, next) {
     res.status = 404;
     next('Path not Found');
-});//end of normal routes
-
+}); //end of normal routes
+//error handling middleware
+app.use(function (err, req, res, next) {
+    console.log('Error handler was in use');
+    if (res.status == 404) {
+        res.send('Hacking can result in ban');
+    } else {
+        res.send(err);
+    }
+});
 //listening on port 3000
 app.listen(3000, function () {
     console.log('Listening on Port 3000');
