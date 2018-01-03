@@ -17,5 +17,9 @@ app.get('/normal/route', function (req, res) {
 
 app.get('/restricted/route', middleWare.ageFilter, function (req, res) {
     var dateOfBirth = new Date(req.query.dob);
-    res.send('This is a restricted route, you have to get reallly old for accessing this..')
+    res.send('This is a restricted route, you have to get reallly old for accessing this.. '+ dateOfBirth)
+});
+//
+app.listen(3000, function(){
+    console.log('Listening on Port 3000');
 });
