@@ -20,7 +20,7 @@ function calculateAge(dateOfBirth) {
 
 ////now lets put the age fitler
 
-export.ageFilter = function (req, res, next) {
+exports.ageFilter = function (req, res, next) {
 
     var age = calculateAge(req.query.dob);
     console.log(age);
