@@ -16,8 +16,9 @@ app.get('/normal/route', function (req, res) {
 }); // end of normal route
 
 app.get('/restricted/route', middleWare.ageFilter, function (req, res) {
+    console.log('code will be executed now');
     var dateOfBirth = new Date(req.query.dob);
-    res.send('This is a restricted route, you have to get reallly old for accessing this.. '+ dateOfBirth)
+    res.send('This is a restricted route, you must above 18 years.. '+ dateOfBirth)
 });
 //
 app.listen(3000, function(){
