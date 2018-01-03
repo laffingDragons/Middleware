@@ -12,19 +12,23 @@ var middleWare = require('./myMiddleware.js');
 
 ////////Applicationlevel middleware////////////
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     console.log('Time of request : ', Date.now());
-    console.log('Request URL is ',req.originalUrl);
-    console.log('The request IP was :',req.ip);
-    
+    console.log('Request URL is ', req.originalUrl);
+    console.log('The request IP was :', req.ip);
+
     //store some global variable object in request object
-    req.someGuy = {name:'someGuy',email:'some email'};
-    
+    req.someGuy = {
+        name: 'someGuy',
+        email: 'some email'
+    };
+
     next();
 });
 /////////routerlevel middleware////////////
 app.get('/normal/route', function (req, res) {
     var dateOfBirth = new Date(req.query.dob);
+    console.log('This is '+req.someGuy.name+ ' making request')
     res.send("This is a Normal route accessible to everyone and Date of birth is " + dateOfBirth);
 }); // end of normal route
 
@@ -32,9 +36,9 @@ app.get('/restricted/route', middleWare.ageFilter, function (req, res) {
     console.log('code will be executed now');
     var dateOfBirth = new Date(req.query.dob);
     /*res.send('This is a restricted route, you must above 18 years.. '+ dateOfBirth)*/
-    res.send('This is a restricted route, you must above 18 years.. But my age is ' +req.age)
+    res.send('This is a restricted route, you must above 18 years.. But my age is ' + req.age)
 });
 //
-app.listen(3000, function(){
+app.listen(3000, function () {
     console.log('Listening on Port 3000');
 });
