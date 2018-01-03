@@ -17,6 +17,9 @@ app.use(function(req, res, next){
     console.log('Request URL is ',req.originalUrl);
     console.log('The request IP was :',req.ip);
     
+    //store some global variable object in request object
+    req.someGuy = {name:'someGuy',email:'some email'};
+    
     next();
 });
 /////////routerlevel middleware////////////
