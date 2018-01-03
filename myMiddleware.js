@@ -1,7 +1,4 @@
 //////////////this is a Router level middleware//////////////
-//////////////this is a Router level middleware//////////////
-//////////////this is a Router level middleware//////////////
-//////////////this is a Router level middleware//////////////
 
 // function to check age
 
@@ -24,6 +21,7 @@ exports.ageFilter = function (req, res, next) {
 
     var age = calculateAge(req.query.dob);
     console.log(age);
+    req.age = age;
     if (age >= 18) {
         console.log("Age is Fine");
         next();
